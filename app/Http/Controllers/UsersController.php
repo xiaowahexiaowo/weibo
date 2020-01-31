@@ -72,4 +72,11 @@ public function __construct()
 
         return redirect()->route('users.show', $user);
     }
+    public function destroy(User $user)
+    {
+         $this->authorize('destroy', $user);
+        $user->delete();
+        session()->flash('success', '成功删除用户！');
+        return back();
+    }
 }
