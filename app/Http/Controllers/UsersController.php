@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Mail;
-
+use Auth;
 class UsersController extends Controller
 {
     //
@@ -100,6 +100,8 @@ public function __construct()
 
     public function confirmEmail($token)
     {
+
+
         $user = User::where('activation_token', $token)->firstOrFail();
 
         $user->activated = true;
@@ -108,6 +110,8 @@ public function __construct()
 
         Auth::login($user);
         session()->flash('success', '恭喜你，激活成功！');
+
         return redirect()->route('users.show', [$user]);
+
     }
 }
