@@ -32,3 +32,6 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('passw
 // 可以指定生成哪里个路由
 Route::resource('statuses', 'StatusesController', ['only' => ['store', 'destroy']]);
 
+Route::get('/users/{user}/followings', 'UsersController@followings')->name('users.followings');
+Route::get('/users/{user}/followers', 'UsersController@followers')->name('users.followers');
+
